@@ -1,0 +1,27 @@
+name: Terraform DEV Deploy
+on: 
+  pull-request:
+    branches:
+      - develop
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Repository
+        uses: actions/checkout@v4
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
+      - name: AWS Access using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # Our previously created OpenID Connect in AWS / IAM 
+          role-to-assume: arn:aws:iam::984912522251:role/github-oidc
+          aws-reagon: eu-north-1
+      - name: Terraform Init
+        run: terraform init
+      - name: Terraform Validate
+        run: terraform validate
+      - name: Terraform Plan
+        run: terraform plan
