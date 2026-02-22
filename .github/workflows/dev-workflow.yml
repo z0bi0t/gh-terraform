@@ -1,4 +1,4 @@
-name: Terraform DEV Deploy
+name: Terraform DEV Deploy ...
 on: 
   pull-request:
     branches:
