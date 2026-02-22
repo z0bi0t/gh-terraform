@@ -18,7 +18,7 @@ jobs:
         with:
           # Our previously created OpenID Connect in AWS / IAM 
           role-to-assume: arn:aws:iam::984912522251:role/github-oidc
-          aws-reagon: eu-north-1
+          aws-region: eu-north-1
       - name: Terraform Init
         run: terraform init
       - name: Terraform Validate
