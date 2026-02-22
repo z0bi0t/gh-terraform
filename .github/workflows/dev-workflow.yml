@@ -1,6 +1,6 @@
 name: Terraform DEV Deploy ...
-on: 
-  pull-request:
+on:
+  pull_request:
     branches:
       - develop
 jobs:
