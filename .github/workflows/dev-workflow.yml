@@ -9,6 +9,9 @@ permissions:
 jobs:
   plan:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dev
     steps:
       - name: Check out Repository
         uses: actions/checkout@v4
@@ -24,10 +27,7 @@ jobs:
           aws-region: eu-north-1
       - name: Terraform Init
         run: terraform init
-        working-directory: dev
       - name: Terraform Validate
         run: terraform validate        
-        working-directory: dev
       - name: Terraform Plan
-        run: terraform plan
-        working-directory: dev
+        run: terraform plan -var-file=dev.tfvars
